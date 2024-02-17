@@ -133,3 +133,88 @@ console.log(maxRepeatNum);
 
       let string = "kamranisagoodcoder";
       console.log(countCharacter(string));
+
+      // Q-6 remove the duplicate number in sorted array.
+      // Example 2:
+// Input: nums = [0,0,1,1,1,2,2,3,3,4]
+// Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+// Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
+// It does not matter what you leave beyond the returned k (hence they are underscores).
+
+//this is two pointer approach : In which firstly we take a first pointer and then make a loop to arr.length and then compare thatif arr[j] is not equal to arr[i] then i++ and i become j.
+
+function removeDuplicates(nums) {
+  if (nums.length === 0) {
+    return 0;
+  }
+  let i = 0;
+
+  for (let j = 1; j < nums.length; j++) {
+    if (nums[i] !== nums[j]) {
+      i++;
+      nums[i] = nums[j];
+    }
+  }
+
+  const resultLength = i + 1;
+  console.log(resultLength)
+
+  // Update the array with underscores for remaining elements
+  for (let i = resultLength; i < nums.length; i++) {
+    nums[i] = "_";
+  }
+
+  return [resultLength , nums];
+
+}
+
+let nums = [0,0,1,1,1,2,2,3,3,4];
+console.log(removeDuplicates(nums))
+
+
+//Q-7 Largest element in the array
+
+//first method (this is not optimal solution)
+
+function findLar(arr){
+  let sortedarr = arr.sort((a,b)=>a-b);
+  return sortedarr[arr.length-1]
+
+}
+console.log(findLar([3,4,5,6,6,44,55,4,333]))
+
+//now we will get the optimal solution
+
+function largestEle(arr){
+  let largestElement =arr[0]
+  for(let i=1; i< arr.length; i++){
+    if(arr[i]>largestElement){
+      largestElement = arr[i]
+    }
+  }
+  return largestElement;
+}
+
+console.log(largestEle([3,4,5,6,6,44,55,4,333]))
+
+//Q-8 find the second largest element in the array;
+
+//approach firstly we have to find the largest ele in the array and then we let the second largest ele is -1 and apply loop then compare that if arr[i] is greater than second large ele and it is not equal to the largest num then it will be second largest;
+
+function secondLargestEle(arr){
+  let largestEle = arr[0]
+  for(let i=1; i< arr.length; i++){
+    if(arr[i]>largestEle){
+       largestEle = arr[i]
+    }
+  }
+  let secondLar = -1;
+  for(let i=0; i<arr.length; i++){
+    if(arr[i]>secondLar && arr[i] !== largestEle){
+      secondLar = arr[i]
+    }
+  }
+  return secondLar;
+}
+
+console.log(secondLargestEle([3,4,5,6,6,44,55,4,333]))
