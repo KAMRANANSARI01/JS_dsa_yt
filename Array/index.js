@@ -218,3 +218,17 @@ function secondLargestEle(arr){
 }
 
 console.log(secondLargestEle([3,4,5,6,6,44,55,4,333]))
+
+//sqaure of sorted arry
+
+var sortedSquares = function(nums) {
+  let sqrArr=[]
+  for( let i=0; i<nums.length; i++){
+     sqrArr.push(nums[i]*nums[i])
+  }
+  sqrArr.sort((a,b)=>a-b);
+  return sqrArr;
+};
+
+console.log(sortedSquares([-4,-1,0,3,10]));
+
