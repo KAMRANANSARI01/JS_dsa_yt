@@ -61,7 +61,7 @@ const fibbonacci = (num) => {
 
 // console.log(fibbonacci(6))//this will print only 6th number of fibonacci.
 
-//print whole fibonacci
+//print whole fibonacci series
 
 function fibSeries(num) {
   let pre = 0;
