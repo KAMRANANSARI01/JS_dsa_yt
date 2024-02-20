@@ -221,7 +221,7 @@ console.log(secondLargestEle([3,4,5,6,6,44,55,4,333]))
 
 //sqaure of sorted arry
 
-var sortedSquares = function(nums) {
+var sortedSquaress = function(nums) {
   let sqrArr=[]
   for( let i=0; i<nums.length; i++){
      sqrArr.push(nums[i]*nums[i])
@@ -230,5 +230,24 @@ var sortedSquares = function(nums) {
   return sqrArr;
 };
 
-console.log(sortedSquares([-4,-1,0,3,10]));
+console.log(sortedSquaress([-4,-1,0,3,10]));
 
+//now we will use an optimal solution using two pointers method
+
+var sortedSquares = function(nums) {
+  let n = nums.length;
+  let result = new Array(n);
+  let left = 0;
+  let right = n-1;
+  for(let i=n-1; i>=0; i--){
+      if(nums[left]**2 < nums[right]**2){
+          result[i] = nums[right]**2;
+          right--;
+      }else{
+          result[i] = nums[left]**2;
+          left++
+      }
+  }
+  return result;
+};
+console.log(sortedSquares([-6,-4,-1,0,3,10]));
