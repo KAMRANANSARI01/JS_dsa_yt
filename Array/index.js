@@ -251,3 +251,48 @@ var sortedSquares = function(nums) {
   return result;
 };
 console.log(sortedSquares([-6,-4,-1,0,3,10]));
+
+// 
+ // Q-3Sum
+// Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+// Notice that the solution set must not contain duplicate triplets.
+// Example 1:
+// Input: nums = [-1,0,1,2,-1,-4]
+// Output: [[-1,-1,2],[-1,0,1]]
+
+var threeSum = function(nums) {
+  let n = nums.length;
+  let result = [];
+  let arr = nums.sort((a, b) => a - b);
+
+  for (let k = 0; k < n; k++) {
+      if (k === 0 || arr[k] !== arr[k - 1]) {
+          let i = k + 1;
+          let j = n - 1;
+          let target = -arr[k];
+
+          while (i < j) {
+              if (arr[i] + arr[j] === target) {
+                  result.push([arr[k], arr[i], arr[j]]);
+
+                  // Skip duplicate values for i and j
+                  while (i < j && arr[i] === arr[i + 1]) {
+                      i++;
+                  }
+                  while (i < j && arr[j] === arr[j - 1]) {
+                      j--;
+                  }
+
+                  i++;
+                  j--;
+              } else if (arr[i] + arr[j] > target) {
+                  j--;
+              } else {
+                  i++;
+              }
+          }
+      }
+  }
+
+  return result;
+};
